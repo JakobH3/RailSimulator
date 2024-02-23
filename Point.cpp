@@ -7,10 +7,10 @@ Point Point::addPoint(Point p)
 
 }
 
-Point Point::scalePoint(int p)
+Point Point::scalePoint(float p)
 {
 
-    return Point(x * p, y * p);
+    return Point((int)x * p, (int)y * p);
 
 }
 

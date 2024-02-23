@@ -1,13 +1,14 @@
 #ifndef JUNCTION_H
 #define JUNCTION_H
+#include <vector>
 #include "Line.h"
 
 
 class Junction
 {
     public:
-        Line linesConnecting[10];
+        std::vector<Line*> linesConnecting;
 
-}
+};
 
 #endif

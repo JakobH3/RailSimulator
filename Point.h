@@ -10,7 +10,8 @@ class Point
         int x,y;
         Point(int x,int y);
         Point addPoint(Point p);
-        Point scalePoint(int p);
+        Point scalePoint(float p);
+        int distanceBetweenPoints(Point p);
 
 };
 

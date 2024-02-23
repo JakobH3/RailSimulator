@@ -11,6 +11,8 @@ class Segment
         Segment * prev;
         Point location;
         int trackSpeed;
+        Point getPointAlongSegment(float i);
+        bool isPointAlongSegment(Point p);
 
 };
 
