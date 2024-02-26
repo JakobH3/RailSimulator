@@ -1,5 +1,9 @@
 #include "Segment.h"
 
+Segment::Segment(Point location)
+{
+    this->location = location;
+}
 
 Point Segment::getPointAlongSegment(float porportion)
 {
