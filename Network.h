@@ -13,11 +13,9 @@ class Network
         std::vector<Station> stations;
         //std::vector<Route> routes;
         //std::vector<Trip> trips;
-        int tripLength(Station s1, Station s2);
+        int distanceBetweenStations(Station s1, Station s2);
         std::vector<Line*> getLinesInbetweenStations(Station s1, Station s2); 
         Line getClosestLineToPoint(Point p);
-        
-        
 
 };
 

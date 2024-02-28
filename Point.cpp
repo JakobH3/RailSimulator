@@ -1,9 +1,17 @@
 #include "Point.h"
+#include <math.h>
 
 Point Point::addPoint(Point p)
 {
 
     return Point(x + p.x, y + p.y);
+
+}
+
+Point Point::subtractPoint(Point p)
+{
+
+    return Point(x - p.x, y - p.y);
 
 }
 
@@ -14,6 +22,16 @@ Point Point::scalePoint(float p)
 
 }
 
+int Point::distanceBetweenPoints(Point p)
+{
+
+    int xDif = x - p.x;
+    int yDif = y - p.y;
+
+    return (int) sqrt((xDif * xDif) + (yDif * yDif));
+
+}
+
 Point::Point(int x, int y)
 {
 
@@ -21,13 +39,12 @@ Point::Point(int x, int y)
     this->y = y;
     
 }
+
 Point::Point()
 {
 
-    x = 0;
-    y = 0;
-
 }
+
 
 
 

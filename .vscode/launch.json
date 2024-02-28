@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "C/C++: g++ build active file",
+            "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/bin/${fileBasenameNoExtension}",
@@ -23,8 +23,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "RailSimulator",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "preLaunchTask": "C/C++: g++-11 build active file"
+
         }
     ],
     "version": "2.0.0"

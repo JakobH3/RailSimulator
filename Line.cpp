@@ -1,17 +1,32 @@
 #include "Line.h"
+#include "Point.h"
 
-Line::Line()
+// Generate Line between two points
+Line::Line(Point p1, Point p2, int numSegments)
 {
+     segments.push_back(Segment(p1));
+     Segment * start = & segments.back();
+     Segment * current = start;
 
 
+     for(int i = 1; i < numSegments; i++)
+     {
+          // nextLoc = (p2-p1)*(i/numSegments) + p1
+          Point nextLoc = p2.subtractPoint(p1).scalePoint(i/(float)numSegments).addPoint(p1);
+          segments.push_back(Segment(nextLoc));
+          current->next = & segments.back();
+          current->next->prev = current;
+          current = current->next;
 
-}
+     }
 
-Line::Line(Segment * start, Segment * end)
-{
-
+          segments.push_back(Segment(p2));
+          current->next = & segments.back();
+          current->next->prev = current;
+          current = current->next;
+          
      startSegment = start;
-     endSegment = end;
+     endSegment = current;
 
 }
 
@@ -36,6 +51,7 @@ Segment * Line::getClosestSegmentToPoint(Point p)
 
      } 
     
+    return closest;
 
 }
 
@@ -65,7 +81,7 @@ Point Line::getPointFromStart(int traveled, int length, Segment * current)
    }else
    {
 
-        float porportion = (traveled - length) / (current->location.distanceBetweenPoints(current->next->location));
+        float porportion =  (traveled - length) / (float) (current->location.distanceBetweenPoints(current->next->location));
 
         return current->getPointAlongSegment(porportion);
    }
@@ -82,7 +98,7 @@ Point Line::getPointFromEnd(int traveled, int length, Segment * current)
    }else
    {
 
-        float porportion = (traveled - length) / (current->location.distanceBetweenPoints(current->prev->location));
+        float porportion = (traveled - length) / (float) (current->location.distanceBetweenPoints(current->prev->location));
 
         //1 - porportion is to flip direction coming from
         return current->getPointAlongSegment(1 - porportion);
@@ -91,26 +107,29 @@ Point Line::getPointFromEnd(int traveled, int length, Segment * current)
 
 }
 
-Line Line::GenerateLineBetweenTwoPoints(Point p1, Point p2, int numSegments)
+int Line::getLineLength()
 {
-     
-     Segment * start = & Segment(p1);
-     Segment * current = start;
+     return lineLength(startSegment);
 
+}
 
-     for(int i = 1; i < numSegments; i++)
+int Line::lineLength(Segment * cur)
+{
+     if(cur != endSegment)
      {
-          // nextLoc = (p1-p2)*(i/numSegments) + p1
-          Point nextLoc = p1.addPoint(p2.scalePoint(-1)).scalePoint(i/numSegments).addPoint(p1);
-          current->next = & Segment(nextLoc);;
-          current->next->prev = current;
-          current = current->next;
-
+          return cur->location.distanceBetweenPoints(cur->next->location) + lineLength(cur->next);
+     }else
+     {
+          return 0;
      }
+     
 
-          current->next = & Segment(p2);
-          current->next->prev = current;
-          
-     return Line(start,current);
+}
+
+
+bool Line::getDirection(Junction * j)
+{
+
+     return j == startJunction;
 
 }

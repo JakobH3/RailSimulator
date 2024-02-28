@@ -7,7 +7,7 @@
 class Junction
 {
     public:
-        std::vector<Line*> linesConnecting;
+        Point location;
 
 };
 
