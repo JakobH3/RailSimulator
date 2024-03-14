@@ -1,5 +1,5 @@
 #ifndef SEGMENT_H
-#define SEGEMNT_H
+#define SEGMENT_H
 #include "Point.h"
 
 

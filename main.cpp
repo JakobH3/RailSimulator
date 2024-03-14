@@ -32,11 +32,11 @@ int main() {
     // printPoint(p3);
     // printPoint(p4);
 
-    Line l = Line(p1,p2,10);
+    Line * l = new Line(p1,p2,10);
 
     //printLine(l);
 
-    std::cout << l.getLineLength();
+    std::cout << l->getLineLength();
 
     //printPoint(l.endSegment->location);
     

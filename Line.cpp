@@ -4,8 +4,8 @@
 // Generate Line between two points
 Line::Line(Point p1, Point p2, int numSegments)
 {
-     segments.push_back(Segment(p1));
-     Segment * start = & segments.back();
+
+     Segment * start = new Segment(p1);
      Segment * current = start;
 
 
@@ -13,15 +13,14 @@ Line::Line(Point p1, Point p2, int numSegments)
      {
           // nextLoc = (p2-p1)*(i/numSegments) + p1
           Point nextLoc = p2.subtractPoint(p1).scalePoint(i/(float)numSegments).addPoint(p1);
-          segments.push_back(Segment(nextLoc));
-          current->next = & segments.back();
+          //segments.push_back(new Segment(nextLoc));
+          current->next = new Segment(nextLoc);
           current->next->prev = current;
           current = current->next;
 
      }
 
-          segments.push_back(Segment(p2));
-          current->next = & segments.back();
+          current->next = new Segment(p2);
           current->next->prev = current;
           current = current->next;
           
@@ -127,9 +126,21 @@ int Line::lineLength(Segment * cur)
 }
 
 
-bool Line::getDirection(Junction * j)
+bool Line::getDirection(Line * l)
 {
 
-     return j == startJunction;
+     bool ret = false;
+
+     for(std::vector<Line *>::iterator it = connectedToStart.begin(); it != connectedToStart.end(); ++it)
+     {
+
+          if(*it == l)
+          {
+               ret = true;
+          }
+
+     }
+
+     return ret;
 
 }

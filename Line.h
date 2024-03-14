@@ -2,7 +2,8 @@
 #define LINE_H
 #include <vector>
 #include "Segment.h"
-#include "Junciton.h"
+
+
 
 
 class Line
@@ -11,10 +12,9 @@ class Line
     public:
         Segment * startSegment;
         Segment * endSegment;
-        Junction * startJunction;
-        Junction * endJunction;
+        std::vector<Line *> connectedToStart;
+        std::vector<Line *> connectedToEnd;
         int numTracks;
-        std::vector<Segment> segments;
         
         Point getPointAlongLine(int length, bool direction);
         Point getPointFromStart(int traveled, int length, Segment * current);
@@ -25,7 +25,7 @@ class Line
         int getLineLength();
         int lineLength(Segment * cur);
         Line generateLineBetweenTwoPoints(Point p1, Point p2, int numSegments);
-        bool getDirection(Junction * j);
+        bool getDirection(Line * l);
         Line(Point p1, Point p2, int numSegments);
 
 
