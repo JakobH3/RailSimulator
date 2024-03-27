@@ -23,7 +23,7 @@ void printLine(Line l)
 int main() {
 
     Point p1 = Point(0,0);
-    Point p2 = Point(7000,2000);
+    Point p2 = Point(10,10);
     Point p3 = p1.addPoint(p2);
     Point p4 = p3.scalePoint(.5);
 
@@ -36,7 +36,9 @@ int main() {
 
     //printLine(l);
 
-    std::cout << l->getLineLength();
+    std::cout << l->getLineLength() << std::endl;
+
+    printLine(*l);
 
     //printPoint(l.endSegment->location);
     

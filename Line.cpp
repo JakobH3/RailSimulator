@@ -4,7 +4,7 @@
 // Generate Line between two points
 Line::Line(Point p1, Point p2, int numSegments)
 {
-
+     numTracks = 1;
      Segment * start = new Segment(p1);
      Segment * current = start;
 
